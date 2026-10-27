@@ -24,5 +24,5 @@ jadwal belajar
 
 
 ## Tautan
-- Website: menyusul setelah *deploy* ke Vercel
+- Website: https://portofolio-alfian2.vercel.app,
 - Dibuat oleh: Dwiputra Jauhar Alfian, SMKN Pasuruan
