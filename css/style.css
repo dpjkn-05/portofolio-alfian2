@@ -1,234 +1,585 @@
-/* Gaya portofolio Andi Pratama
-   Palet: #1D3557 (utama), #E63946 (aksen), #F1FAEE (latar)
-   Huruf: Poppins (judul), Inter (isi)
-   Tata letak: mobile first, titik ubah 768px (tablet) dan 1024px (laptop) */
+/* ==========================================
+   PORTOFOLIO DWIPUTRA JAUHAR ALFIAN
+   Tema: OCEAN BLUE
+   Warna: Navy, Biru Laut, Putih, Soft Cream
+   Responsive: Mobile, Tablet, Laptop
+   ========================================== */
 
-/* 1. Reset */
+/* 1. Variabel warna */
+:root {
+  --primary: #1D3557;
+  --primary-dark: #12243D;
+  --primary-light: #315780;
+
+  --accent: #168AAD;
+  --accent-dark: #126782;
+  --accent-light: #52B8D5;
+
+  --background: #F1FAEE;
+  --surface: #FFFFFF;
+  --text: #263238;
+  --muted: #64748B;
+  --border: #DCE5E8;
+
+  --shadow-sm: 0 4px 12px rgba(29, 53, 87, 0.08);
+  --shadow-md: 0 12px 30px rgba(29, 53, 87, 0.12);
+  --shadow-lg: 0 20px 45px rgba(18, 36, 61, 0.18);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --transition: 0.25s ease;
+}
+
+/* 2. Reset */
 * {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(22, 138, 173, 0.09),
+      transparent 35%
+    ),
+    var(--background);
+
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
+  display: block;
   max-width: 100%;
   height: auto;
 }
 
-/* 2. Dasar halaman: warna dan huruf */
-body {
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #333333;
-  background-color: #F1FAEE;
+a {
+  color: var(--accent);
+  transition: color var(--transition);
 }
 
-h1, h2, h3 {
-  font-family: "Poppins", Arial, sans-serif;
-  color: #1D3557;
+a:hover {
+  color: var(--accent-dark);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  color: var(--primary);
   line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
 }
 
 h2 {
   margin-bottom: 0.75rem;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
 }
 
-p, ul, ol {
+h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+p,
+ul,
+ol {
   margin-bottom: 1rem;
 }
 
-a {
-  color: blue;
+p {
+  color: var(--muted);
 }
 
-/* 3. Wadah, header, dan menu */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-header {
-  background-color: #1D3557;
+::selection {
   color: #FFFFFF;
-  padding: 1rem 0;
+  background: var(--accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-light);
+  outline-offset: 4px;
+}
+
+/* 3. Container */
+.container {
+  width: min(1100px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+/* 4. Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  color: #FFFFFF;
+  background: rgba(18, 36, 61, 0.96);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 6px 24px rgba(18, 36, 61, 0.12);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+header .container {
+  padding-block: 1rem;
 }
 
 header h1 {
   color: #FFFFFF;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
 }
 
+/* 5. Navbar */
 .navbar {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 nav ul {
   display: flex;
-  gap: 0.25rem;
-  padding: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+
   margin: 0;
+  padding: 0;
   list-style: none;
 }
 
 nav a {
   display: inline-block;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  color: #FFFFFF;
+  padding: 0.55rem 0.85rem;
+
+  color: #E8EEF6;
+  font-size: 0.93rem;
   font-weight: 600;
   text-decoration: none;
+
+  border-radius: var(--radius-sm);
+
+  transition:
+    color var(--transition),
+    background var(--transition),
+    transform var(--transition);
 }
 
-/* Tantangan: menu ponsel buka-tutup dengan details */
+nav a:hover,
+nav a:focus-visible {
+  color: #FFFFFF;
+  background: rgba(22, 138, 173, 0.3);
+}
+
+nav a:active {
+  transform: scale(0.97);
+}
+
+/* 6. Menu laptop dan ponsel */
 .menu-laptop {
   display: none;
 }
 
 .menu-ponsel summary {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #FFFFFF;
-  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-sm);
+
   font-weight: 600;
   cursor: pointer;
+
+  transition: background var(--transition);
+}
+
+.menu-ponsel summary:hover {
+  background: rgba(22, 138, 173, 0.2);
 }
 
 .menu-ponsel ul {
   flex-direction: column;
-  margin-top: 0.5rem;
+  align-items: stretch;
+
+  min-width: 160px;
+  margin-top: 0.6rem;
+  padding: 0.5rem;
+
+  background: var(--primary-dark);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
 }
 
-/* 4. Isi utama, hero, dan kartu */
+/* 7. Konten utama */
 main {
-  padding: 1.5rem 0;
+  min-height: 65vh;
+  padding: 2rem 0;
 }
 
+section {
+  scroll-margin-top: 100px;
+}
+
+/* 8. Hero / perkenalan */
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1rem 0 2rem;
+  gap: 2rem;
+
+  padding: 2rem 0 3.5rem;
   text-align: center;
 }
 
 .hero img {
-  border: 4px solid blue;
+  width: min(260px, 75vw);
+  aspect-ratio: 1;
+  object-fit: cover;
+
+  border: 5px solid #FFFFFF;
   border-radius: 50%;
+
+  box-shadow:
+    0 0 0 4px rgba(22, 138, 173, 0.35),
+    0 15px 40px rgba(29, 53, 87, 0.2);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.hero img:hover {
+  transform: translateY(-5px) scale(1.02);
+
+  box-shadow:
+    0 0 0 5px rgba(22, 138, 173, 0.45),
+    0 22px 45px rgba(29, 53, 87, 0.22);
 }
 
 .hero h2 {
-  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 5vw, 3.2rem);
 }
 
+.hero p {
+  max-width: 650px;
+  margin-inline: auto;
+  font-size: 1.05rem;
+}
+
+/* 9. Tombol */
 .tombol {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  background-color: blue;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.5rem;
+
   color: #FFFFFF;
-  font-weight: 600;
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    var(--accent-dark)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+
+  box-shadow: 0 7px 18px rgba(22, 138, 173, 0.24);
+
+  font-weight: 700;
   text-decoration: none;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    filter var(--transition);
 }
 
+.tombol:hover {
+  color: #FFFFFF;
+  filter: brightness(1.08);
+  transform: translateY(-3px);
+
+  box-shadow: 0 12px 25px rgba(22, 138, 173, 0.32);
+}
+
+.tombol:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 10. Kartu */
 .kartu {
-  background-color: #FFFFFF;
-  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+
+  padding: 1.25rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #DDDDDD;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  background: var(--surface);
+  border: 1px solid rgba(29, 53, 87, 0.09);
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
+.kartu::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 4px;
+  height: 0;
+
+  background: var(--accent);
+  transition: height 0.3s ease;
+}
+
+.kartu:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(22, 138, 173, 0.3);
+  box-shadow: var(--shadow-md);
+}
+
+.kartu:hover::before {
+  height: 100%;
+}
+
+.kartu p:last-child {
+  margin-bottom: 0;
+}
+
+/* 11. Kumpulan kartu */
 .daftar-kartu {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1.25rem;
   margin-bottom: 1.5rem;
 }
 
 .daftar-kartu .kartu {
   flex: 1 1 280px;
+  min-width: 0;
   margin-bottom: 0;
 }
 
+/* 12. Gambar artikel */
 article img {
-  border-radius: 8px;
-  border: 1px solid #DDDDDD;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  transition: transform var(--transition);
 }
 
-/* 5. Tabel */
+article img:hover {
+  transform: scale(1.01);
+}
+
+/* 13. Tabel */
 table {
+  width: 100%;
   border-collapse: collapse;
+
+  background: #FFFFFF;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 caption {
-  font-weight: 600;
+  padding-bottom: 0.75rem;
+  color: var(--primary);
+  font-weight: 700;
   text-align: left;
-  margin-bottom: 0.5rem;
 }
 
-th, td {
-  border: 1px solid #CCCCCC;
-  padding: 0.5rem 0.75rem;
+th,
+td {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
   text-align: left;
 }
 
 th {
-  background-color: #1D3557;
   color: #FFFFFF;
+  background: var(--primary);
+  font-weight: 700;
 }
 
-/* 6. Form */
+tbody tr:nth-child(even) {
+  background: #F7FAFC;
+}
+
+tbody tr:hover {
+  background: #EAF7FB;
+}
+
+/* 14. Form */
 label {
-  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+
+  color: var(--primary);
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
+  display: block;
   width: 100%;
   max-width: 22rem;
-  padding: 0.6rem;
-  margin-top: 0.25rem;
-  border: 1px solid #CCCCCC;
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 1rem;
+
+  padding: 0.75rem 0.9rem;
+  margin-top: 0.3rem;
+
+  color: var(--text);
+  background: #FFFFFF;
+
+  border: 1px solid #CBD5E1;
+  border-radius: var(--radius-sm);
+
+  font: inherit;
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--primary-light);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+
+  box-shadow: 0 0 0 4px rgba(22, 138, 173, 0.15);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* 15. Tombol form */
 button {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 6px;
-  background-color: blue;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  padding: 0.8rem 1.4rem;
+
   color: #FFFFFF;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 600;
+  background: var(--accent);
+
+  border: none;
+  border-radius: var(--radius-sm);
+
+  font: inherit;
+  font-weight: 700;
   cursor: pointer;
+
+  transition:
+    background var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
 }
 
-/* 7. Footer */
+button:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+
+  box-shadow: 0 7px 18px rgba(22, 138, 173, 0.25);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* 16. Footer */
 footer {
-  background-color: #1D3557;
-  color: #F1FAEE;
+  margin-top: 2rem;
+  padding: 2rem 1rem;
+
+  color: #E8EEF6;
   text-align: center;
-  padding: 1.5rem;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(22, 138, 173, 0.2),
+      transparent 40%
+    ),
+    var(--primary-dark);
+
+  border-top: 3px solid var(--accent);
 }
 
 footer p {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
+  color: #CBD5E1;
+  font-size: 0.92rem;
 }
 
 footer a {
   color: #FFFFFF;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  text-underline-offset: 3px;
 }
 
-/* 8. Tablet: lebar layar 768px ke atas */
+footer a:hover {
+  color: var(--accent-light);
+}
+
+/* 17. Tablet */
 @media (min-width: 768px) {
+  header .container {
+    padding-block: 1rem;
+  }
+
   .menu-laptop {
     display: block;
   }
@@ -239,26 +590,97 @@ footer a {
 
   .hero {
     flex-direction: row;
-    padding: 2rem 0 3rem;
+    justify-content: space-between;
+    gap: 3rem;
+
+    padding: 3rem 0 4rem;
     text-align: left;
+  }
+
+  .hero > * {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .hero img {
+    width: min(320px, 40vw);
+    flex: 0 0 auto;
+  }
+
+  .hero p {
+    margin-inline: 0;
   }
 
   .kartu {
     padding: 1.5rem;
   }
+
+  .daftar-kartu {
+    gap: 1.5rem;
+  }
 }
 
-/* 9. Laptop: lebar layar 1024px ke atas */
+/* 18. Laptop */
 @media (min-width: 1024px) {
   main {
-    padding: 2.5rem 0;
+    padding: 3rem 0;
   }
 
   .hero {
-    gap: 3rem;
+    gap: 4rem;
+    padding-block: 4rem 5rem;
   }
 
-  .hero h2 {
-    font-size: 2.75rem;
+  .hero img {
+    width: 350px;
+  }
+
+  .daftar-kartu .kartu {
+    flex-basis: 300px;
+  }
+}
+
+/* 19. Ponsel kecil */
+@media (max-width: 420px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    width: calc(100% - 1.25rem);
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  .hero {
+    gap: 1.25rem;
+  }
+
+  .hero img {
+    width: min(210px, 70vw);
+  }
+
+  .kartu {
+    padding: 1rem;
+  }
+
+  th,
+  td {
+    padding: 0.55rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 20. Aksesibilitas: kurangi animasi bila diminta */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
