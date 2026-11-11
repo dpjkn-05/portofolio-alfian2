@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/alfian.js" defer></script>
-  <script src="js/logika.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
 </head>
 <body>
   <header>
@@ -23,6 +23,9 @@
           <li><a href="kalkulator.html">Kalkulator</a></li>
         </ul>
       </nav>
+      <button type="button" id="tombol-tema" class="tombol-tema">
+        Mode Gelap
+      </button>
       <!-- Tantangan: menu ponsel yang bisa dibuka-tutup -->
       <details class="menu-ponsel">
         <summary>Menu</summary>
@@ -70,19 +73,15 @@
           <ol>
             <li>Menuntaskan Kelas Industri UBIG sampai Semester 4</li>
             <li>Magang di perusahaan teknologi</li>
-            <li>Melanjutkan Kuliah Di ITB (Institut Tecnology Bandung)</li>
+            <li>Melanjutkan Kuliah Di ITB (Institut Teknologi Bandung)</li>
           </ol>
         </section>
 
         <section class="kartu">
-          <h2>Keahlian</h2>
-          <ul>
-            <li>HTML dan CSS dasar (sedang dipelajari)</li>
-            <li>Git dan GitHub (sedang dipelajari)</li>
-            <li>Mengetik cepat</li>
-            <li>Desain poster dengan Canva</li>
-          </ul>
-        </section>
+      <h2>Keahlian</h2>
+      <ul id="daftar-skill"></ul>
+      <p id="jumlah-skill"></p>
+</section>
       </div>
 
       <section class="kartu">
