@@ -2,37 +2,50 @@
 // Dipasang di ketiga halaman dengan defer
 
 // ==========================================
-// 1. DAFTAR KEAHLIAN (HALAMAN BERANDA)
+// 1. DAFTAR KEAHLIAN DARI FILE JSON
 // ==========================================
 
-const skills = [
-  { nama: "HTML", level: "Menengah" },
-  { nama: "CSS", level: "Menengah" },
-  { nama: "Git dan GitHub", level: "Dasar" },
-  { nama: "Desain poster dengan Canva", level: "Mahir" },
-];
-
-// Menambahkan keahlian JavaScript
-skills.push({ nama: "JavaScript", level: "Dasar" });
-
-// Mengambil elemen HTML
 const daftarSkill = document.querySelector("#daftar-skill");
 const jumlahSkill = document.querySelector("#jumlah-skill");
 
-// Menampilkan daftar keahlian
-if (daftarSkill) {
-  skills.forEach((skill) => {
-    const item = document.createElement("li");
+async function muatKeahlian() {
+  if (!daftarSkill) return;
 
-    item.textContent = `${skill.nama} (${skill.level})`;
+  daftarSkill.innerHTML = "<li>Memuat keahlian...</li>";
 
-    daftarSkill.appendChild(item);
-  });
+  try {
+    const response = await fetch("data/keahlian.json");
 
-  jumlahSkill.textContent =
-    `Ada ${skills.length} keahlian yang sedang saya kembangkan.`;
+    if (!response.ok) {
+      throw new Error("Gagal mengambil data keahlian.");
+    }
+
+    const skills = await response.json();
+
+    daftarSkill.innerHTML = "";
+
+    skills.forEach((skill) => {
+      const item = document.createElement("li");
+      item.textContent = `${skill.nama} (${skill.level})`;
+      daftarSkill.appendChild(item);
+    });
+
+    if (jumlahSkill) {
+      jumlahSkill.textContent =
+        `Ada ${skills.length} keahlian yang sedang saya kembangkan.`;
+    }
+
+  } catch (error) {
+    console.error(error);
+    daftarSkill.innerHTML = "<li>Keahlian gagal dimuat.</li>";
+
+    if (jumlahSkill) {
+      jumlahSkill.textContent = "Data keahlian tidak dapat ditampilkan.";
+    }
+  }
 }
 
+muatKeahlian();
 
 // 2. Tema gelap (semua halaman)
 const tombolTema = document.querySelector("#tombol-tema");
@@ -60,86 +73,137 @@ if (kotakPesan) {
     });
 }
 
-// 4. Daftar proyek dan filter (halaman Proyek)
-const proyek = [
-{
-judul: "Halaman Profil Pertama",
-kategori: "HTML",
-gambar: "img/proyek-profile.png",
-alt: "Tangkapan layar halaman profil Andi Pratama",
-deskripsi: "Halaman web pertama saya, dibuat dengan HTML dasar." 
-},
-{
-judul: "Form Kontak",
-kategori: "HTML",
-gambar: "img/proyek-kontak.png",
-alt: "Tangkapan layar form kontak berisi lima isian",
-deskripsi: "Form dengan label dan validasi bawaan browser.",
-},
-{
-judul: "Tabel Jadwal Belajar",
-kategori: "HTML",
-gambar: "img/proyek-jadwal.png",
-alt: "Tangkapan layar tabel jadwal belajar mandiri",
-deskripsi: "Jadwal belajar mingguan dengan thead dan tbody.",
-},
+// ==========================================
+// 4. DAFTAR PROYEK DAN FILTER DARI JSON
+// ==========================================
 
-{
-judul: "Portofolio Responsif",
-kategori: "CSS",
-gambar: "img/proyek-responsif.png.png",
-alt: "Tangkapan layar portofolio di ponsel dan laptop",
-deskripsi: "Rapi di ponsel, tablet, dan laptop dengan Flexbox.",
-},
-{
-judul: "Kalkulator Nilai Rapor",
-kategori: "JavaScript",
-gambar: "img/proyek-kalkulator.png.png",
-alt: "Tangkapan layar hasil kalkulator nilai di Console",
-deskripsi: "Rata-rata dan predikat nilai dengan fungsi JavaScript.",
-},
-{
-judul: "Lima Soal Logika",
-kategori: "JavaScript",
-gambar: "img/proyek-logika.png.png",
-alt: "Tangkapan layar hasil uji lima soal logika",
-deskripsi: "Lima fungsi logika yang masing-masing diuji 3 masukan.",
-},
-];
+let proyek = [];
 
 const daftarProyek = document.querySelector("#daftar-proyek");
 const jumlahProyek = document.querySelector("#jumlah-proyek");
+
 function buatKartu(item) {
-return `
-<article class="kartu">
-<span class="label">${item.kategori}</span>
-<h3>${item.judul}</h3>
-<img src="${item.gambar}" alt="${item.alt}" width="280">
-<p>${item.deskripsi}</p>
-</article>`;
+  return `
+    <article class="kartu">
+      <span class="label">${item.kategori}</span>
+      <h3>${item.judul}</h3>
+      <img src="${item.gambar}" alt="${item.alt}" width="280">
+      <p>${item.deskripsi}</p>
+    </article>
+  `;
 }
+
 function tampilkanProyek(daftar) {
-const semuaKartu = daftar.map((item) => buatKartu(item));
-daftarProyek.innerHTML = semuaKartu.join("");
-jumlahProyek.textContent = `Menampilkan ${daftar.length} dari $
-{proyek.length} proyek`;
+  if (!daftarProyek || !jumlahProyek) return;
+
+  const semuaKartu = daftar.map((item) => buatKartu(item));
+
+  daftarProyek.innerHTML = semuaKartu.join("");
+
+  jumlahProyek.textContent =
+    `Menampilkan ${daftar.length} dari ${proyek.length} proyek`;
 }
 
 function pasangFilter(idTombol, kategori) {
-const tombol = document.querySelector(idTombol);
-tombol.addEventListener("click", () => {
-if (kategori === "Semua") {
-tampilkanProyek(proyek);
-} else {
-tampilkanProyek(proyek.filter((item) => item.kategori ===
-kategori));
+  const tombol = document.querySelector(idTombol);
+
+  if (!tombol) return;
+
+  tombol.addEventListener("click", () => {
+    if (kategori === "Semua") {
+      tampilkanProyek(proyek);
+    } else {
+      tampilkanProyek(
+        proyek.filter((item) => item.kategori === kategori)
+      );
+    }
+  });
 }
-});
+
+async function muatProyek() {
+  if (!daftarProyek || !jumlahProyek) return;
+
+  daftarProyek.innerHTML = "<p>Memuat proyek...</p>";
+
+  try {
+    const response = await fetch("data/proyek.json");
+
+    if (!response.ok) {
+      throw new Error("Gagal mengambil data proyek.");
+    }
+
+    proyek = await response.json();
+
+    tampilkanProyek(proyek);
+
+    // Memasang tombol filter
+    pasangFilter("#filter-semua", "Semua");
+    pasangFilter("#filter-HTML", "HTML");
+    pasangFilter("#filter-CSS", "CSS");
+    pasangFilter("#filter-javascript", "JavaScript");
+
+  } catch (error) {
+    console.error(error);
+
+    daftarProyek.innerHTML =
+      "<p>Data proyek gagal dimuat.</p>";
+
+    jumlahProyek.textContent =
+      "Tidak dapat menampilkan proyek.";
+  }
 }
-if (daftarProyek) {
-tampilkanProyek(proyek);
-pasangFilter("#filter-semua", "Semua");
-pasangFilter("#filter-HTML", "HTML");
-pasangFilter("#filter-CSS", "CSS");
-pasangFilter("#filter-javascript", "JavaScript");
+
+muatProyek();
+
+// ==========================================
+// 5. GITHUB API DENGAN ASYNC/AWAIT
+// ==========================================
+
+async function ambilRepo() {
+  const daftarRepo = document.querySelector("#daftar-repo-github");
+  const statusRepo = document.querySelector("#status-repo-github");
+
+  if (!daftarRepo || !statusRepo) return;
+
+  statusRepo.textContent = "Memuat repositori GitHub...";
+  daftarRepo.innerHTML = "";
+
+  try {
+    const response = await fetch(
+      "https://api.github.com/users/dpjkn-05/repos?sort=updated&per_page=100"
+    );
+
+    if (!response.ok) {
+      throw new Error("Gagal mengambil data repositori.");
+    }
+
+    const repositori = await response.json();
+
+    if (repositori.length === 0) {
+      statusRepo.textContent = "Belum ada repositori publik.";
+      return;
+    }
+
+    daftarRepo.innerHTML = repositori.map((repo) => `
+      <article class="kartu">
+        <span class="label">${repo.language || "Repository"}</span>
+        <h3>${repo.name}</h3>
+        <p>${repo.description || "Belum ada deskripsi."}</p>
+        <p>Bintang: ${repo.stargazers_count}</p>
+        <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+          Lihat repositori di GitHub
+        </a>
+      </article>
+    `).join("");
+
+    statusRepo.textContent =
+      `Berhasil memuat ${repositori.length} repositori GitHub.`;
+
+  } catch (error) {
+    console.error(error);
+    statusRepo.textContent =
+      "Repositori gagal dimuat. Periksa koneksi internet.";
+  }
 }
+
+ambilRepo();
