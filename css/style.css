@@ -409,6 +409,10 @@ section {
   margin-bottom: 0;
 }
 
+#daftar-proyek {
+min-height: 30rem;
+}
+
 /* 11. KARTU PROYEK */
 article.kartu img {
   width: 100%;

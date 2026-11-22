@@ -100,8 +100,6 @@ function buatKartu(item) {
     <article class="kartu">
       <span class="label">${item.kategori}</span>
       <h3>${item.judul}</h3>
-      <img src="${item.gambar}" alt="${item.alt}" width="280">
-      <p>${item.deskripsi}</p>
       <img src="${item.gambar}" alt="${item.alt}" width="280" height="184">
     </article>
   `;
