@@ -19,35 +19,42 @@
 
     <!-- NAVBAR -->
     <header>
-        <div class="container navbar">
-            <h1>Dwiputra Jauhar Alfian</h1>
+  <div class="container navbar">
+    <h1>Dwiputra Jauhar Alfian</h1>
 
-            <nav class="menu-laptop">
-                <ul>
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="proyek.html">Proyek</a></li>
-                    <li><a href="kontak.html">Kontak</a></li>
-                    <li><a href="kalkulator.html">Kalkulator</a></li>
-                </ul>
-            </nav>
+    <nav class="menu-laptop" aria-label="Navigasi utama">
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="proyek.html">Proyek</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+        <li><a href="kalkulator.html">Kalkulator</a></li>
+      </ul>
+    </nav>
 
-            <button type="button" id="tombol-tema" class="tombol-tema">
-                Mode Gelap
-            </button>
+    <button type="button" id="tombol-tema" class="tombol-tema">
+      Mode Gelap
+    </button>
 
-            <details class="menu-ponsel">
-                <summary>Menu</summary>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Beranda</a></li>
-                        <li><a href="proyek.html">Proyek</a></li>
-                        <li><a href="kontak.html">Kontak</a></li>
-                        <li><a href="kalkulator.html">Kalkulator</a></li>
-                    </ul>
-                </nav>
-            </details>
-        </div>
-    </header>
+    <div class="menu-ponsel">
+      <button
+        type="button"
+        id="tombol-menu"
+        class="tombol-menu"
+        aria-expanded="false"
+        aria-controls="daftar-menu-ponsel"
+      >☰ Menu</button>
+
+      <nav id="daftar-menu-ponsel" aria-label="Navigasi ponsel" hidden>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="proyek.html">Proyek</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+          <li><a href="kalkulator.html">Kalkulator</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
 
     <!-- KONTEN KALKULATOR -->
     <main class="halaman-kalkulator">

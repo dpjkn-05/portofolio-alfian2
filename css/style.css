@@ -155,6 +155,7 @@ header h1 {
 
 /* 5. NAVIGASI */
 .navbar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -162,29 +163,36 @@ header h1 {
   gap: 1rem;
 }
 
-nav ul {
+.navbar > h1 {
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.menu-laptop ul,
+.menu-ponsel ul {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.35rem;
   list-style: none;
   margin: 0;
+  padding: 0;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0.55rem 0.85rem;
-
+.menu-laptop a,
+.menu-ponsel a {
+  display: block;
+  padding: 0.65rem 0.85rem;
   color: #E8F3FA;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
-
   border-radius: var(--radius-sm);
   transition: var(--transition);
 }
 
-nav a:hover {
+.menu-laptop a:hover,
+.menu-ponsel a:hover {
   color: white;
   background: rgba(76, 201, 240, 0.2);
 }
@@ -194,40 +202,62 @@ nav a:hover {
 }
 
 .menu-ponsel {
+  display: block;
   position: relative;
+  margin-left: auto;
 }
 
-.menu-ponsel summary {
-  padding: 0.55rem 0.9rem;
+/* Tombol menu HP */
+.tombol-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.65rem 1rem;
   color: white;
-  border: 1px solid rgba(255,255,255,0.35);
+  background: var(--accent);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-sm);
-  font-weight: 600;
+  font: inherit;
+  font-weight: 700;
   cursor: pointer;
 }
 
-.menu-ponsel summary:hover {
-  background: rgba(76, 201, 240, 0.2);
+.tombol-menu:hover {
+  color: white;
+  background: var(--accent-dark);
 }
 
-.menu-ponsel ul {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  z-index: 110;
+/* Dropdown HP: diposisikan relatif terhadap tombol menu */
+.menu-ponsel nav[hidden] {
+  display: none !important;
+}
 
+.menu-ponsel nav:not([hidden]) {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  right: 0;
+  z-index: 9999;
+  width: min(220px, calc(100vw - 2rem));
+  padding: 0.45rem;
+  background: var(--primary-dark);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.menu-ponsel nav ul {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  flex-wrap: nowrap;
+  gap: 0.2rem;
+}
 
-  min-width: 175px;
-  margin-top: 0.7rem;
-  padding: 0.5rem;
-
-  background: var(--primary-dark);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+.menu-ponsel nav a {
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--radius-sm);
 }
 
 /* 6. KONTEN UTAMA */
@@ -776,5 +806,23 @@ body.gelap .tombol-filter.aktif {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Perbaikan tambahan khusus menu layar kecil */
+@media (max-width: 767px) {
+  header,
+  header .container,
+  .navbar {
+    overflow: visible;
+  }
+
+  .menu-ponsel {
+    flex: 0 0 auto;
+  }
+
+  .menu-ponsel nav:not([hidden]) {
+    max-height: min(70vh, 360px);
+    overflow-y: auto;
   }
 }

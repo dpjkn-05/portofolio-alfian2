@@ -1,5 +1,8 @@
-// JavaScript Portfolio Dwiputra Jauhar Alfian
-// Dipasang di ketiga halaman dengan defer
+// ==========================================
+// JAVASCRIPT PORTOFOLIO
+// DWIPUTRA JAUHAR ALFIAN
+// ==========================================
+
 
 // ==========================================
 // 1. DAFTAR KEAHLIAN DARI FILE JSON
@@ -40,14 +43,19 @@ async function muatKeahlian() {
     daftarSkill.innerHTML = "<li>Keahlian gagal dimuat.</li>";
 
     if (jumlahSkill) {
-      jumlahSkill.textContent = "Data keahlian tidak dapat ditampilkan.";
+      jumlahSkill.textContent =
+        "Data keahlian tidak dapat ditampilkan.";
     }
   }
 }
 
 muatKeahlian();
 
-// 2. Tema gelap (semua halaman)
+
+// ==========================================
+// 2. MODE GELAP
+// ==========================================
+
 const tombolTema = document.querySelector("#tombol-tema");
 
 if (tombolTema) {
@@ -62,16 +70,21 @@ if (tombolTema) {
   });
 }
 
-// 3. Penghitung karakter pesan
+
+// ==========================================
+// 3. PENGHITUNG KARAKTER PESAN
+// ==========================================
+
 const kotakPesan = document.querySelector("#pesan");
 const hitungKarakter = document.querySelector("#hitung-karakter");
 
-if (kotakPesan) {
-    kotakPesan.addEventListener("input", () => {
-        hitungKarakter.textContent =
-            `${kotakPesan.value.length}/300 karakter`;
-    });
+if (kotakPesan && hitungKarakter) {
+  kotakPesan.addEventListener("input", () => {
+    hitungKarakter.textContent =
+      `${kotakPesan.value.length}/300 karakter`;
+  });
 }
+
 
 // ==========================================
 // 4. DAFTAR PROYEK DAN FILTER DARI JSON
@@ -136,7 +149,6 @@ async function muatProyek() {
 
     tampilkanProyek(proyek);
 
-    // Memasang tombol filter
     pasangFilter("#filter-semua", "Semua");
     pasangFilter("#filter-HTML", "HTML");
     pasangFilter("#filter-CSS", "CSS");
@@ -154,6 +166,7 @@ async function muatProyek() {
 }
 
 muatProyek();
+
 
 // ==========================================
 // 5. GITHUB API DENGAN ASYNC/AWAIT
@@ -207,3 +220,103 @@ async function ambilRepo() {
 }
 
 ambilRepo();
+
+
+// ==========================================
+// 6. MENU RESPONSIVE PONSEL
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const tombolMenu = document.querySelector("#tombol-menu");
+  const daftarMenu = document.querySelector("#daftar-menu-ponsel");
+
+  // Pastikan elemen menu tersedia
+  if (!tombolMenu || !daftarMenu) return;
+
+  // Fungsi menutup menu
+  function tutupMenu() {
+    daftarMenu.hidden = true;
+
+    tombolMenu.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    tombolMenu.textContent = "☰ Menu";
+  }
+
+  // Fungsi membuka menu
+  function bukaMenu() {
+    daftarMenu.hidden = false;
+
+    tombolMenu.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+    tombolMenu.textContent = "✕ Tutup Menu";
+  }
+
+  // Klik tombol menu
+  tombolMenu.addEventListener("click", (event) => {
+
+    event.stopPropagation();
+
+    const menuTerbuka =
+      tombolMenu.getAttribute("aria-expanded") === "true";
+
+    if (menuTerbuka) {
+      tutupMenu();
+    } else {
+      bukaMenu();
+    }
+
+  });
+
+  // Klik tautan menu
+  daftarMenu.querySelectorAll("a").forEach((link) => {
+
+    link.addEventListener("click", () => {
+      tutupMenu();
+    });
+
+  });
+
+  // Klik di luar menu
+  document.addEventListener("click", (event) => {
+
+    const klikDiTombol =
+      tombolMenu.contains(event.target);
+
+    const klikDiMenu =
+      daftarMenu.contains(event.target);
+
+    if (!klikDiTombol && !klikDiMenu) {
+      tutupMenu();
+    }
+
+  });
+
+  // Tutup dengan tombol Escape
+  document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+      tutupMenu();
+    }
+
+  });
+
+  // Tutup ketika layar berubah ke laptop
+  window.addEventListener("resize", () => {
+
+    if (window.innerWidth >= 768) {
+      tutupMenu();
+    }
+
+  });
+
+  // Kondisi awal menu tertutup
+  tutupMenu();
+
+});
