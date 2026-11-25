@@ -95,12 +95,12 @@ let proyek = [];
 const daftarProyek = document.querySelector("#daftar-proyek");
 const jumlahProyek = document.querySelector("#jumlah-proyek");
 
-function buatKartu(item) {
+function buatKartu(item, index) {
   return `
     <article class="kartu">
       <span class="label">${item.kategori}</span>
       <h3>${item.judul}</h3>
-      <img src="${item.gambar}" alt="${item.alt}" width="280" height="184">
+      <img src="${item.gambar}" alt="${item.alt}" width="${item.width || 280}" height="${item.height || 184}" loading="${index === 0 ? "eager" : "lazy"}" decoding="async">
     </article>
   `;
 }
@@ -108,7 +108,7 @@ function buatKartu(item) {
 function tampilkanProyek(daftar) {
   if (!daftarProyek || !jumlahProyek) return;
 
-  const semuaKartu = daftar.map((item) => buatKartu(item));
+  const semuaKartu = daftar.map((item, index) => buatKartu(item, index));
 
   daftarProyek.innerHTML = semuaKartu.join("");
 

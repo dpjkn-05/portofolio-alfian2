@@ -2,43 +2,55 @@
   {
     "judul": "Halaman Profil Pertama",
     "kategori": "HTML",
-    "gambar": "img/proyek-profile.png",
+    "gambar": "img/proyek-profile.webp",
     "alt": "Tangkapan layar halaman profil Andi Pratama",
-    "deskripsi": "Halaman web pertama saya, dibuat dengan HTML dasar."
+    "deskripsi": "Halaman web pertama saya, dibuat dengan HTML dasar.",
+    "width": 1896,
+    "height": 877
   },
   {
     "judul": "Form Kontak",
     "kategori": "HTML",
-    "gambar": "img/proyek-kontak.png",
+    "gambar": "img/proyek-kontak.webp",
     "alt": "Tangkapan layar form kontak berisi lima isian",
-    "deskripsi": "Form dengan label dan validasi bawaan browser."
+    "deskripsi": "Form dengan label dan validasi bawaan browser.",
+    "width": 1897,
+    "height": 874
   },
   {
     "judul": "Tabel Jadwal Belajar",
     "kategori": "HTML",
-    "gambar": "img/proyek-jadwal.png",
+    "gambar": "img/proyek-jadwal.webp",
     "alt": "Tangkapan layar tabel jadwal belajar mandiri",
-    "deskripsi": "Jadwal belajar mingguan dengan thead dan tbody."
+    "deskripsi": "Jadwal belajar mingguan dengan thead dan tbody.",
+    "width": 1335,
+    "height": 456
   },
   {
     "judul": "Portofolio Responsif",
     "kategori": "CSS",
-    "gambar": "img/proyek-responsif.png.png",
+    "gambar": "img/proyek-responsif.png.webp",
     "alt": "Tangkapan layar portofolio di ponsel dan laptop",
-    "deskripsi": "Rapi di ponsel, tablet, dan laptop dengan Flexbox."
+    "deskripsi": "Rapi di ponsel, tablet, dan laptop dengan Flexbox.",
+    "width": 222,
+    "height": 721
   },
   {
     "judul": "Kalkulator Nilai Rapor",
     "kategori": "JavaScript",
-    "gambar": "img/proyek-kalkulator.png.png",
+    "gambar": "img/proyek-kalkulator.png.webp",
     "alt": "Tangkapan layar hasil kalkulator nilai di Console",
-    "deskripsi": "Rata-rata dan predikat nilai dengan fungsi JavaScript."
+    "deskripsi": "Rata-rata dan predikat nilai dengan fungsi JavaScript.",
+    "width": 799,
+    "height": 748
   },
   {
     "judul": "Lima Soal Logika",
     "kategori": "JavaScript",
-    "gambar": "img/proyek-logika.png.png",
+    "gambar": "img/proyek-logika.png.webp",
     "alt": "Tangkapan layar hasil uji lima soal logika",
-    "deskripsi": "Lima fungsi logika yang masing-masing diuji 3 masukan."
+    "deskripsi": "Lima fungsi logika yang masing-masing diuji 3 masukan.",
+    "width": 808,
+    "height": 871
   }
 ]
